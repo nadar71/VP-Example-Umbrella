@@ -28,26 +28,54 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial
+package com.raywenderlich.android.rwandroidtutorial.view
 
-import com.squareup.moshi.Moshi
+import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
+import android.support.v7.app.AppCompatActivity
+import android.view.Window
+import android.view.WindowManager
+import com.raywenderlich.android.rwandroidtutorial.R
 
-class WeatherRepositoryImpl : WeatherRepository {
-  val jsonRain:String = "{\"id\":804,\"main\":\"clouds\",\"description\":\"overcast clouds\",\"icon\":\"04n\", \"rain\":{\"amount\":20},\"clouds\":{\"all\":92}, \"wind\":{\"speed\":7.31,\"deg\":187.002}, \"temp\":289.5,\"humidity\":89,\"pressure\":1013,\"temp_min\":287.04,\"temp_max\":292.04}"
-  val jsonSun:String = "{\"id\":804,\"main\":\"sunny\",\"description\":\"sunny\",\"icon\":\"04n\", \"rain\":{\"amount\":0},\"clouds\":{\"all\":92}, \"wind\":{\"speed\":7.31,\"deg\":187.002}, \"temp\":289.5,\"humidity\":89,\"pressure\":1013,\"temp_min\":287.04,\"temp_max\":292.04}"
+/**
+ * Splash Screen with the app icon and name at the center, this is also the launch screen and
+ * opens up in fullscreen mode. Once launched it waits for 2 seconds after which it opens the
+ * MainActivity
+ */
+class SplashActivity : AppCompatActivity() {
 
-  override fun loadWeather(): Weather {
-    val moshi = Moshi.Builder().build()
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-    val json = when((1..2).shuffled().last()) {
-      1 -> jsonRain
-      else -> jsonSun
-    }
+    makeFullScreen()
 
-    val jsonAdapter = moshi.adapter<Weather>(Weather::class.java)
+    setContentView(R.layout.activity_splash)
 
-    val weather: Weather = jsonAdapter.fromJson(json)
+    // Using a handler to delay loading the MainActivity
+    Handler().postDelayed({
 
-    return weather
+      // Start activity
+      startActivity(Intent(this, MainActivity::class.java))
+
+      // Animate the loading of new activity
+      overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
+      // Close this activity
+      finish()
+
+    }, 2000)
+  }
+
+  private fun makeFullScreen() {
+    // Remove Title
+    requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+    // Make Fullscreen
+    window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+    // Hide the toolbar
+    supportActionBar?.hide()
   }
 }

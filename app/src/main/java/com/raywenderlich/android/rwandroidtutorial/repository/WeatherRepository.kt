@@ -28,52 +28,11 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial
+package com.raywenderlich.android.rwandroidtutorial.repository
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.widget.Button
-import android.widget.ImageView
+import com.raywenderlich.android.rwandroidtutorial.Weather
 
-class MainActivity : AppCompatActivity() {
-  internal lateinit var imageView: ImageView
-  internal lateinit var button: Button
-  val weatherRepository: WeatherRepository = WeatherRepositoryImpl()
+interface WeatherRepository {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-
-    imageView = findViewById(R.id.imageView)
-    button = findViewById(R.id.button)
-    button.setOnClickListener { loadWeather() }
-    loadWeather()
-  }
-
-  fun displayWeatherState(weatherState: WeatherState) {
-    val drawable = resources.getDrawable(weatherDrawableResId(weatherState),
-            applicationContext.getTheme())
-    this.imageView.setImageDrawable(drawable)
-  }
-
-  fun weatherDrawableResId(weatherState: WeatherState) : Int {
-    return when (weatherState) {
-      WeatherState.SUN -> R.drawable.ic_sun
-      WeatherState.RAIN -> R.drawable.ic_umbrella
-    }
-  }
-
-  private fun loadWeather() {
-    val weather = weatherRepository.loadWeather()
-    val weatherState = weatherStateForWeather(weather)
-    displayWeatherState(weatherState)
-  }
-
-  private fun weatherStateForWeather(weather: Weather) : WeatherState {
-    if (weather.rain!!.amount!! > 0) {
-      return WeatherState.RAIN
-    }
-    return WeatherState.SUN
-  }
+  fun loadWeather(): Weather
 }
-
