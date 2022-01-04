@@ -32,9 +32,9 @@ package com.raywenderlich.android.rwandroidtutorial
 
 import com.raywenderlich.android.rwandroidtutorial.di.DependencyInjector
 import com.raywenderlich.android.rwandroidtutorial.model.WeatherState
-import com.raywenderlich.android.rwandroidtutorial.presenter.MainPresenter
+import com.raywenderlich.android.rwandroidtutorial.Main.presenter.MainPresenter
 import com.raywenderlich.android.rwandroidtutorial.repository.WeatherRepository
-import com.raywenderlich.android.rwandroidtutorial.view.MainContract
+import com.raywenderlich.android.rwandroidtutorial.Main.MainContract
 
 import org.junit.After
 import org.junit.Before

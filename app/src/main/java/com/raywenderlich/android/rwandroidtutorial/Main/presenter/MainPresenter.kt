@@ -1,10 +1,10 @@
-package com.raywenderlich.android.rwandroidtutorial.presenter
+package com.raywenderlich.android.rwandroidtutorial.Main.presenter
 
+import com.raywenderlich.android.rwandroidtutorial.Main.MainContract
 import com.raywenderlich.android.rwandroidtutorial.Weather
 import com.raywenderlich.android.rwandroidtutorial.repository.WeatherRepository
 import com.raywenderlich.android.rwandroidtutorial.model.WeatherState
 import com.raywenderlich.android.rwandroidtutorial.di.DependencyInjector
-import com.raywenderlich.android.rwandroidtutorial.view.MainContract
 
 // 1
 class MainPresenter(view: MainContract.View,

@@ -11,7 +11,7 @@
       android:theme="@style/AppTheme">
 
     <!-- Splash Activity -->
-    <activity android:name=".view.SplashActivity">
+    <activity android:name=".SplashActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -20,7 +20,7 @@
     </activity>
 
     <!-- Main Activity -->
-    <activity android:name=".view.MainActivity"/>
+    <activity android:name=".Main.view.ui.MainActivity"/>
   </application>
 
 </manifest>

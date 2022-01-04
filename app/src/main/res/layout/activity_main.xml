@@ -2,7 +2,7 @@
 xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
 android:orientation="vertical"
 android:layout_height="match_parent"
-tools:context=".view.MainActivity">
+tools:context=".Main.view.ui.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
